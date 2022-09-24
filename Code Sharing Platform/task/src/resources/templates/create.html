@@ -2,23 +2,38 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <div th:replace="blocks/head"></div>
-
 <body>
-<main class="responsive">
-        <div class="field textarea label border">
-            <textarea name="code" id="code_snippet"></textarea>
-            <label for="code_snippet">Code</label>
+<div class="container">
+    <div class="row">
+        <h1>Create new Code</h1>
+        <div class="col-12 mt-3">
+            <div class="form-floating mb-3">
+                <textarea style="height: 150px;" name="code" class="form-control" id="code_snippet"></textarea>
+                <label class="form-label" for="code_snippet">Code</label>
+
+            </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <div class="form-floating mb-3">
+                <input id="time_restriction" class="form-control" type="number"/>
+                <label class="form-label" for="time_restriction">Time (sec)</label>
+            </div>
 
         </div>
-        <div class="field label border">
-            <label for="time_restriction">Time (sec)</label><input id="time_restriction" type="number"/>
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <div class="form-floating mb-3">
+                <input id="views_restriction" class="form-control" type="number"/>
+                <label class="form-label" for="views_restriction">Views</label>
+            </div>
         </div>
-        <div class="field label border">
-            <label for="views_restriction">Views</label><input id="views_restriction" type="number"/>
+        <div class="col-12">
+            <button type="submit" onclick="send()" id="send_snippet" class="btn btn-primary">Submit</button>
         </div>
-        <button type="submit" onclick="send()" id="send_snippet" class="round primary">Submit</button>
-
-</main>
+        <div class="col-12">
+            <span id="newCode"></span>
+        </div>
+    </div>
+</div>
 </body>
 <script>
     mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
@@ -29,9 +44,16 @@
             "time": document.getElementById("time_restriction").value,
             "views": document.getElementById("views_restriction").value,
         };
-        function reqListener () {
-            console.log(this.responseText);
+
+        let newCode = document.getElementById("newCode");
+
+        function reqListener() {
+            if (this.response != null) {
+                let json1 = JSON.parse(this.responseText);
+                newCode.innerHTML = "<b class='mt-1'>ID code: </b>" + json1.id;
+            }
         }
+
         let json = JSON.stringify(object);
 
         let xhr = new XMLHttpRequest();
@@ -39,5 +61,6 @@
         xhr.open("POST", '/api/code/new', false)
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.send(json);
-    }</script>
+    }
+</script>
 </html>

@@ -1,0 +1,22 @@
+# Project exclude paths
+/.gradle/
+/Code Sharing Platform/task/build/
+/Code Sharing Platform/task/out/production/classes/
+/Topics/LocalDate/Find all mondays/out/
+/Topics/LocalDate/Find all mondays/out/production/classes/
+/Topics/LocalDate/Getting information on a day/out/
+/Topics/LocalDate/Getting information on a day/out/production/classes/
+/Topics/LocalDate/LocalDate class/out/
+/Topics/LocalDate/LocalDate class/out/production/classes/
+/Topics/LocalDate/The n-th day from the end of a month/out/
+/Topics/LocalDate/The n-th day from the end of a month/out/production/classes/
+/Topics/LocalDate/Theory/out/
+/Topics/LocalDate/Theory/out/production/classes/
+/Topics/LocalTime/Methods of LocalTime/out/
+/Topics/LocalTime/Methods of LocalTime/out/production/classes/
+/Topics/LocalTime/Millisecond precision/out/
+/Topics/LocalTime/Millisecond precision/out/production/classes/
+/Topics/LocalTime/Seconds between two time points/out/
+/Topics/LocalTime/Seconds between two time points/out/production/classes/
+/Topics/LocalTime/Theory/out/
+/Topics/LocalTime/Theory/out/production/classes/

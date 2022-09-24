@@ -2,15 +2,27 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <div th:replace="blocks/head"></div>
-
 <body>
-<main class="responsive">
-    <article th:each="code : ${latestCode}">
-        <span id="load_date" class="mb-1 green-c"  th:text="${#temporals.format(code.date, 'yyyy/MM/dd HH:mm:ss')}"></span>
-        <pre id="code_snippet" ><code th:text="${code.code}"></code></pre>
-    </article>
-
-</main>
+<div class="container">
+    <div class="row">
+        <h1>Latest</h1>
+        <div class="col-12" th:each="code : ${latestCode}">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <span id="load_date" class="mb-1 green-c"
+                          th:text="${#temporals.format(code.date, 'yyyy/MM/dd HH:mm:ss')}">
+                    </span>
+                </div>
+                <div class="card-body">
+                    <pre id="code_snippet">
+                        <code th:text="${code.code}">
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

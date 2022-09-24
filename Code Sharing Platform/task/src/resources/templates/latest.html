@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div th:replace="blocks/head"></div>
+
+<body>
+<main class="responsive">
+    <article th:each="code : ${latestCode}">
+        <span id="load_date" class="mb-1 green-c"  th:text="${#temporals.format(code.date, 'yyyy/MM/dd HH:mm:ss')}"></span>
+        <pre id="code_snippet" ><code th:text="${code.code}"></code></pre>
+    </article>
+
+</main>
+
+</body>
+</html>

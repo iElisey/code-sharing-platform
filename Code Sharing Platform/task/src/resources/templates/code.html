@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div th:replace="blocks/head"></div>
+<body>
+<main class="responsive">
+    <article>
+        <th:block th:unless="${code == null}">
+            <span id="load_date" class="mb-1 green-c"
+                  th:text="${#temporals.format(code.date, 'yyyy/MM/dd HH:mm:ss')}">
+            </span>
+            <br>
+            <div th:if="${code.views != 0 && code.time!=0}">
+                <span id="views_restriction"
+                      th:text="${code.views} + ' more views allowed'">
+                </span>
+                <br>
+                <span id="time_restriction"
+                      th:text="'This code will be avaivable for '+${code.time} + ' seconds'">
+                </span>
+            </div>
+            <div th:if="${code.views != 0}">
+                 <span id="views_restriction"
+                       th:text="${code.views} + ' more views allowed'">
+                 </span>
+            </div>
+            <div th:if="${code.time != 0}">
+                 <span id="time_restriction"
+                       th:text="'This code will be avaivable for '+${code.time} + ' seconds'">
+                 </span>
+            </div>
+            <div th:if="${code.time==0  && code.getTimeRestricted()}">
+                   <span id="time_restriction"
+                         th:text="'This code will be avaivable for '+${code.time} + ' seconds'">
+                 </span>
+            </div>
+            <div th:if="${code.views==0  && code.getViewsRestricted()}">
+                   <span id="views_restriction"
+                         th:text="${code.views} + ' more views allowed'">
+                 </span>
+            </div>
+            <div th:if="${(code.views==0  && code.getViewsRestricted()) && (code.time==0  && code.getTimeRestricted())}">
+                <span id="views_restriction"
+                      th:text="${code.views} + ' more views allowed'">
+                </span>
+                <br>
+                <span id="time_restriction"
+                      th:text="'This code will be avaivable for '+${code.time} + ' seconds'">
+                </span>
+            </div>        </th:block>
+        <pre id="code_snippet">
+            <code th:text="${code == null ? '' : code.code}"></code>
+        </pre>
+    </article>
+
+</main>
+</body>
+</html>

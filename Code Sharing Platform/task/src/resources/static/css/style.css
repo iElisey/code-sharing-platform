@@ -1,0 +1,12 @@
+.green-c {
+    color: green;
+}
+.mb-1{
+    margin-bottom: 10rem;
+}
+.grey-bg {
+    background-color: rgba(139,154,129,0.44);
+}
+.border-dark{
+    border: 1px black solid;
+}

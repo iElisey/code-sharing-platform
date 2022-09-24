@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div th:replace="blocks/head"></div>
+
+<body>
+<main class="responsive">
+        <div class="field textarea label border">
+            <textarea name="code" id="code_snippet"></textarea>
+            <label for="code_snippet">Code</label>
+
+        </div>
+        <div class="field label border">
+            <label for="time_restriction">Time (sec)</label><input id="time_restriction" type="number"/>
+        </div>
+        <div class="field label border">
+            <label for="views_restriction">Views</label><input id="views_restriction" type="number"/>
+        </div>
+        <button type="submit" onclick="send()" id="send_snippet" class="round primary">Submit</button>
+
+</main>
+</body>
+<script>
+    mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+
+    function send() {
+        let object = {
+            "code": document.getElementById("code_snippet").value,
+            "time": document.getElementById("time_restriction").value,
+            "views": document.getElementById("views_restriction").value,
+        };
+        function reqListener () {
+            console.log(this.responseText);
+        }
+        let json = JSON.stringify(object);
+
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", reqListener);
+        xhr.open("POST", '/api/code/new', false)
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.send(json);
+    }</script>
+</html>
